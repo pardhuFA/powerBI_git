@@ -1,0 +1,30 @@
+table 'Dim Jurisdiction'
+	lineageTag: 9a0e92fb-a717-4779-95b2-80c83778ea6b
+
+	column jurisdiction
+		dataType: string
+		lineageTag: a4def110-ec0d-4258-8581-f405792f60e5
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Jurisdiction' = m
+		mode: import
+		queryGroup: Dim
+		source = ```
+				let
+				    Client = fn_ReadDeltaTable(
+				    AzureStorage.DataLake(
+				"https://fadpadlsnedev.dfs.core.windows.net/betsson/ENRICHED/RetainCasino/RecSysMeasurementDashboard/TABLES/v1.0/Dim_GameMeta/", 
+				        [HierarchicalNavigation = false])),
+				    #"Removed Other Columns" = Table.SelectColumns(Client,{"jurisdiction"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

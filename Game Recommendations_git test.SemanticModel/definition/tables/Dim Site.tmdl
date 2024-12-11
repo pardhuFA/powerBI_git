@@ -1,0 +1,30 @@
+table 'Dim Site'
+	lineageTag: 62668971-2d7f-4087-a0c9-3f83efa421af
+
+	column site
+		dataType: string
+		lineageTag: df3d8508-e268-4438-ab75-b92055b393f7
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Site' = m
+		mode: import
+		queryGroup: Dim
+		source = ```
+				let
+				    Client = fn_ReadDeltaTable(
+				    AzureStorage.DataLake(
+				"https://fadpadlsnedev.dfs.core.windows.net/betsson/ENRICHED/RetainCasino/RecSysMeasurementDashboard/TABLES/v1.0/Dim_GameMeta/", 
+				        [HierarchicalNavigation = false])),
+				    #"Removed Other Columns" = Table.SelectColumns(Client,{"site"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,68 @@
+table 'Parameter Group Comparison'
+	lineageTag: 790dd220-5e96-4813-b950-2ae336ce91d3
+
+	column 'Parameter Group Comparison'
+		lineageTag: 17e03407-c8c5-4e19-9094-aad321dd267b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Group Comparison Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Group Comparison Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Group Comparison Fields'
+		isHidden
+		lineageTag: 64fa551d-18f1-4958-8b79-7cffab2f649b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Group Comparison Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Group Comparison Order'
+		isHidden
+		formatString: 0
+		lineageTag: c8646db8-e0b3-4653-bfa7-5699cc329627
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric 1' = ```
+			
+			SWITCH(TRUE(),
+			    CONTAINSSTRING('Parameter Group Comparison'[Parameter Group Comparison Fields], "Player Count"), "All",
+			    CONTAINSSTRING('Parameter Group Comparison'[Parameter Group Comparison Fields], "control"), "Control",
+			    CONTAINSSTRING('Parameter Group Comparison'[Parameter Group Comparison Fields], "Target & Rec Played"), "Target & Rec Played",
+			    CONTAINSSTRING('Parameter Group Comparison'[Parameter Group Comparison Fields], "Target & Rec Not Played"), "Target & Rec Not Played"
+			    
+			)
+			```
+		lineageTag: dc21ef0e-4850-4325-8c73-efe4e768ec93
+		summarizeBy: none
+		sortByColumn: 'Parameter Group Comparison Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter Group Comparison' = calculated
+		mode: import
+		source = ```
+				{
+				    ("All", NAMEOF('Key Measures'[Player Count]),0),
+				    ("Control", NAMEOF('Key Measures'[Control]), 1),
+				    ("Target & Rec Not Played", NAMEOF('Key Measures'[Target & Rec Not Played]), 2),
+				    ("Target & Rec Played", NAMEOF('Key Measures'[Target & Rec Played]), 3)
+				    
+				}
+				```
+
+	annotation PBI_Id = 0d767fc3d91c4c9f98df897f887a7c2e
+

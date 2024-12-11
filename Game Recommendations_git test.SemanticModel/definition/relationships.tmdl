@@ -1,0 +1,65 @@
+relationship 6b58bb1d-5caf-e129-fb4d-c595710e1c57
+	fromColumn: 'Parameter Group Comparison 2'.'Metric 1'
+	toColumn: 'Table Group Comparison'.Column1
+
+relationship 21c79aa6-e06b-59f4-6ad7-e5d7dd3f9446
+	fromColumn: 'Fact Network analysis'.game_1
+	toColumn: UniqueGames.Game
+
+relationship a38552b0-d6ec-fedf-a1f6-c215913a8eb0
+	isActive: false
+	fromColumn: 'Fact Network analysis'.game_2
+	toColumn: UniqueGames.Game
+
+relationship 3e6236be-c28d-40dd-3005-c31a013e453a
+	fromColumn: 'Parameter Group Comparison'.'Metric 1'
+	toColumn: 'Table Group Comparison'.Column1
+
+relationship fedb77bc-4eea-5a74-ae91-60c0e0c10c8d
+	fromColumn: 'Fact Player Group'.EventDate
+	toColumn: DimCalendar.Date
+
+relationship ef02a530-6012-127f-c673-697d6b3c6bfb
+	fromColumn: 'Fact Games Stats'.EventDate
+	toColumn: DimCalendar.Date
+
+relationship aab046b6-57e9-46fb-77fa-011e49408653
+	fromColumn: 'Fact Recommended Games'.EventDate
+	toColumn: DimCalendar.Date
+
+relationship 96e3f266-f5d0-ffdb-fbef-8256ff78221c
+	fromColumn: 'Fact Games Stats'.gameId
+	toColumn: 'Dim Game Meta'.gameId
+
+relationship 52305d50-6fb8-b2df-0b3b-b040f11f01c0
+	fromColumn: 'Fact Recommended Games'.recc_game
+	toColumn: 'Dim Game Meta'.gameId
+
+relationship AutoDetected_e02fc0fc-d2af-47a2-9b72-4a2637e5f4c0
+	fromColumn: 'Fact Player Group'.site
+	toColumn: 'Dim Site'.site
+
+relationship AutoDetected_105ded59-e9cd-45b3-9c99-a7e2bd150686
+	fromColumn: 'Fact Recommended Games'.site
+	toColumn: 'Dim Site'.site
+
+relationship AutoDetected_61ef47c2-683c-4d9d-8668-b9f44a58d9c2
+	fromColumn: 'Fact Games Stats'.site
+	toColumn: 'Dim Site'.site
+
+relationship AutoDetected_58b9452f-b333-4f35-a91d-5b9576d74475
+	fromColumn: 'Fact Player Group'.jurisdiction
+	toColumn: 'Dim Jurisdiction'.jurisdiction
+
+relationship AutoDetected_cc464dda-4c15-4c1d-bbab-0ae00b5d848a
+	fromColumn: 'Fact Recommended Games'.jurisdiction
+	toColumn: 'Dim Jurisdiction'.jurisdiction
+
+relationship AutoDetected_f729dfdf-1f01-45ca-b7d2-458512e6b48f
+	fromColumn: 'Fact Games Stats'.jurisdiction
+	toColumn: 'Dim Jurisdiction'.jurisdiction
+
+relationship AutoDetected_fd9ebd58-d839-4fb7-af32-4fcf267ecaf1
+	fromColumn: 'Fact Network analysis'.jurisdiction
+	toColumn: 'Dim Jurisdiction'.jurisdiction
+

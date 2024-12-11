@@ -1,0 +1,83 @@
+table 'Fact Games Stats'
+	lineageTag: bca2678f-e80e-40bf-ae43-b269b67ba8c2
+
+	column gameId
+		dataType: string
+		lineageTag: c18f9c56-7ee4-4dc8-8d57-0b4da8aa7d97
+		summarizeBy: none
+		sourceColumn: gameId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: afd4a9b6-d0d4-4fc8-8068-e6de0033180c
+		summarizeBy: none
+		sourceColumn: EventDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column site
+		dataType: string
+		lineageTag: 1270940a-1944-4c6f-a618-1ea41f1c14be
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	column jurisdiction
+		dataType: string
+		lineageTag: 540dac87-0a31-4304-8707-652fea5c6f87
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column activePlayers
+		dataType: int64
+		formatString: 0
+		lineageTag: 3674f85c-ebf5-464e-b364-8bea610cd7de
+		summarizeBy: sum
+		sourceColumn: activePlayers
+
+		annotation SummarizationSetBy = Automatic
+
+	column stakes
+		dataType: double
+		lineageTag: 428d6b8b-14a2-49b9-a4f6-2cf87e0e3b06
+		summarizeBy: sum
+		sourceColumn: stakes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Fact Games Stats' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Client = Client,
+				    Version = Version,
+				    Base = Base,
+				 
+				    #"Custom URL" = Base & Client & "/demogamerecs/factRecommendation_GameStats",
+				    
+				    #"Read Table" = fn_ReadDeltaTable(
+				        AzureStorage.DataLake(
+				            #"Custom URL", 
+				            [HierarchicalNavigation = false]
+				        )
+				    ),
+				    Custom1 = #"Read Table"
+				in
+				    Custom1
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

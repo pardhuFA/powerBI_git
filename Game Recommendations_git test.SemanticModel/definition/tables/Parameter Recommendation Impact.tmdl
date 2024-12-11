@@ -1,0 +1,74 @@
+table 'Parameter Recommendation Impact'
+	lineageTag: 30ec6fda-22f2-433b-848b-1f8886a1a720
+
+	column 'Parameter '
+		lineageTag: 98ad0412-9ceb-4060-9ac1-d6b3ba6b3549
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: fea09e2a-ae75-424d-b6a1-a88b4850f59f
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 4398708a-7961-482f-812c-d02aabf91789
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric Name' =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Top 10 Game"),"Top 10 Games",
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Top 5 Game"),"Top 5 Games",
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Total"),"All Games"
+			)
+		lineageTag: ba5a46aa-1c88-4b80-90fe-0ab4ec05799f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Top 10 Games Stake"),"Stakes",
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Top 5 Games Stake"),"Stakes",
+			CONTAINSSTRING('Parameter Recommendation Impact'[Parameter Fields],"Total Stakes"),"Stakes"
+			)
+		lineageTag: 1b1876a3-a30b-46bc-b72b-2c01b3d83370
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter Recommendation Impact' = calculated
+		mode: import
+		source = ```
+				{
+				    ("Stakes", NAMEOF('Key Measures'[Top 5 Games Stakes]), 0),
+				    ("Stakes", NAMEOF('Key Measures'[Top 10 Games Stakes]), 1),
+				    ("Stakes", NAMEOF('Key Measures'[Total Stakes Game Stats]), 2)       
+				}
+				```
+
+	annotation PBI_Id = d891745cbba0465d811c61b3d203223b
+

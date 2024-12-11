@@ -1,0 +1,93 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Dim
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Fact
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Measures
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Errors in queries that were loaded on 08-05-2024 18:59:53.
+queryGroup 'Query Errors - 08-05-2024 18:59:53'
+
+	annotation PBI_QueryGroupOrder = 3
+
+/// Errors in queries that were loaded on 09-05-2024 17:53:07.
+queryGroup 'Query Errors - 09-05-2024 17:53:07'
+
+	annotation PBI_QueryGroupOrder = 4
+
+/// Errors in queries that were loaded on 13-05-2024 16:22:26.
+queryGroup 'Query Errors - 13-05-2024 16:22:26'
+
+	annotation PBI_QueryGroupOrder = 5
+
+/// Errors in queries that were loaded on 13-05-2024 18:25:21.
+queryGroup 'Query Errors - 13-05-2024 18:25:21'
+
+	annotation PBI_QueryGroupOrder = 6
+
+/// Errors in queries that were loaded on 13-05-2024 19:49:46.
+queryGroup 'Query Errors - 13-05-2024 19:49:46'
+
+	annotation PBI_QueryGroupOrder = 7
+
+/// Errors in queries that were loaded on 13-05-2024 20:38:57.
+queryGroup 'Query Errors - 13-05-2024 20:38:57'
+
+	annotation PBI_QueryGroupOrder = 8
+
+/// Errors in queries that were loaded on 12-06-2024 21:58:11.
+queryGroup 'Query Errors - 12-06-2024 21:58:11'
+
+	annotation PBI_QueryGroupOrder = 9
+
+/// Errors in queries that were loaded on 12-06-2024 22:24:14.
+queryGroup 'Query Errors - 12-06-2024 22:24:14'
+
+	annotation PBI_QueryGroupOrder = 10
+
+annotation PBIDesktopVersion = 2.138.1203.0 (24.11)
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Date Query","fn_ReadDeltaTable","DimCalendar Period 2","DimCalendar Period 1","Key Measures","DimCalendar","Dim Currency","Dim Site","Dim Jurisdiction","Dim Game Meta","Fact Player Group","Fact Player Group 7 Days","Fact Player Group 30 Days","Table Group Comparison","Client","Version","Base","Fact Recommended Games","Rank Table","Fact Recommended Games stats 7 Days","Fact Recommended Games stats 30 Days","Fact Games Stats","Fact Network analysis"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'DimCalendar Period 2'
+ref table 'DimCalendar Period 1'
+ref table 'Key Measures'
+ref table DimCalendar
+ref table 'Parameter Group Comparison 2'
+ref table 'Fact Player Group'
+ref table 'Parameter Group Comparison'
+ref table 'Table Group Comparison'
+ref table 'Dim Currency'
+ref table 'Parameter Recommendation Impact'
+ref table 'Fact Recommended Games'
+ref table 'Rank Table'
+ref table 'Fact Games Stats'
+ref table 'Fact Network analysis'
+ref table UniqueGames
+ref table 'Dim Game Meta'
+ref table 'Dim Site'
+ref table 'Dim Jurisdiction'
+
+ref perspective 'Betfred Subset data'
+
+ref cultureInfo en-US
+

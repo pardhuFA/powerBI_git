@@ -1,0 +1,157 @@
+table 'Parameter Group Comparison 2'
+	lineageTag: 338b2107-066d-4eda-a2d4-917c005de97c
+
+	column Parameter
+		lineageTag: 59ee3ba5-38e9-4494-a52b-63369d9935d3
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 76d6f6d5-186d-4e2c-981e-6f0ab663b0b6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 0cf4d860-071e-4921-b812-112a305753a7
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Gamesperplayer"),"Games/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"NGRperplayer"),"NGR/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Sessionsperplayer"),"Sessions/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Spinsperplayer"),"Spins/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Stakesperplayer"),"Stakes/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Sessions Per Player"),"Sessions/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Spins Per Player"),"Spins/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Stakes Per Player"),"Stakes/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Games Per Player"),"Games/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played NGR Per Player"),"NGR/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played NGR Per Player"),"NGR/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Sessions Per Player"),"Sessions/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Spins Per Player"),"Spins/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Stakes Per Player"),"Stakes/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Games Per Player"),"Games/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Sessions Per Player"),"Sessions/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control NGR Per Player"),"NGR/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Spins Per Player"),"Spins/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Stakes Per Player"),"Stakes/Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Games Per Player"),"Games/Player"
+			)
+		lineageTag: 5250ae9c-5756-49b4-8778-adcf08615c9a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric 1' = ```
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Games Per Player"),"Control",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control NGR Per Player"),"Control",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Sessions Per Player"),"Control",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Spins Per Player"),"Control",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Stakes Per Player"),"Control",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Games Per Player"),"Target & Rec Not Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played NGR Per Player"),"Target & Rec Not Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Sessions Per Player"),"Target & Rec Not Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Spins Per Player"),"Target & Rec Not Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Stakes Per Player"),"Target & Rec Not Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Played Games Per Player"),"Target & Rec Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Played NGR Per Player"),"Target & Rec Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Played Sessions Per Player"),"Target & Rec Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Played Spins Per Player"),"Target & Rec Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Played Stakes Per Player"),"Target & Rec Played",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"GamesPerPlayer"),"All",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"NGRPerPlayer"),"All",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"SessionsPerPlayer"),"All",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"SpinsPerPlayer"),"All",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"StakesPerPlayer"),"All"
+			)
+			
+			```
+		lineageTag: 45c66bb8-03ad-4975-a4c6-162a18b5c4a6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric Name' =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Gamesperplayer"),"Games Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"NGRperplayer"),"NGR Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Sessionsperplayer"),"Sessions Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Spinsperplayer"),"Spins Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Stakesperplayer"),"Stakes Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Sessions Per Player"),"Sessions Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Spins Per Player"),"Spins Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Stakes Per Player"),"Stakes Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Games Per Player"),"Games Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played NGR Per Player"),"NGR Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played NGR Per Player"),"NGR Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec played Sessions Per Player"),"Sessions Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Spins Per Player"),"Spins Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Stakes Per Player"),"Stakes Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Target & Rec Not Played Games Per Player"),"Games Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Sessions Per Player"),"Sessions Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control NGR Per Player"),"NGR Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Spins Per Player"),"Spins Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Stakes Per Player"),"Stakes Per Player",
+			CONTAINSSTRING('Parameter Group Comparison 2'[Parameter Fields],"Control Games Per Player"),"Games Per Player"
+			)
+		lineageTag: 2b2e2f1d-e95b-4a32-9f45-974a83db8291
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter Group Comparison 2' = calculated
+		mode: import
+		source = ```
+				{
+				    ("All: Stakes Per Player", NAMEOF('Key Measures'[StakesPerPlayer]), 1),
+				    ("All: NGR Per Player", NAMEOF('Key Measures'[NGRPerPlayer]), 2),
+				    ("All: Spins Per Player", NAMEOF('Key Measures'[SpinsPerPlayer]), 3),
+				    ("All: Sessions Per Player", NAMEOF('Key Measures'[SessionsPerPlayer]), 4),
+				    ("All: Games Per Player", NAMEOF('Key Measures'[GamesPerPlayer]), 5),
+				    ("Control: Stakes Per Player", NAMEOF('Key Measures'[Control Stakes Per Player]), 6),
+				    ("Control: NGR Per Player", NAMEOF('Key Measures'[Control NGR Per Player]), 7),  
+				    ("Control: Spins Per Player", NAMEOF('Key Measures'[Control Spins Per Player]), 8),
+				    ("Control: Sessions Per Player", NAMEOF('Key Measures'[Control Sessions Per Player]), 9),
+				    ("Control: Games Per Player", NAMEOF('Key Measures'[Control Games Per Player]), 10),
+				    ("Target & Rec Not Played: Stakes Per Player", NAMEOF('Key Measures'[Target & Rec Not Played Stakes Per Player]), 11),
+				    ("Target & Rec Not Played: NGR Per Player", NAMEOF('Key Measures'[Target & Rec Not Played NGR Per Player]), 12),
+				    ("Target & Rec Not Played: Spins Per Player", NAMEOF('Key Measures'[Target & Rec Not Played Spins Per Player]), 13),
+				    ("Target & Rec Not Played: Sessions Per Player", NAMEOF('Key Measures'[Target & Rec Not Played Sessions Per Player]), 14),
+				    ("Target & Rec Not Played: Games Per Player", NAMEOF('Key Measures'[Target & Rec Not Played Games Per Player]), 15),
+				    ("Target & Rec Played: Stakes Per Player", NAMEOF('Key Measures'[Target & Rec Played Stakes Per Player]), 16),
+				    ("Target & Rec Played: NGR Per Player", NAMEOF('Key Measures'[Target & Rec Played NGR Per Player]), 17),
+				    ("Target & Rec Played: Spins Per Player", NAMEOF('Key Measures'[Target & Rec Played Spins Per Player]), 18),
+				    ("Target & Rec Played: Sessions Per Player", NAMEOF('Key Measures'[Target & Rec Played Sessions Per Player]), 19),
+				    ("Target & Rec Played: Games Per Player", NAMEOF('Key Measures'[Target & Rec Played Games Per Player]), 20)
+				    
+				}
+				```
+
+	annotation PBI_Id = 3bf1b8bdc4e548d482e64dfde47e8b29
+

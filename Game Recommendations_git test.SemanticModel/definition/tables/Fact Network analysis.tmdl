@@ -1,0 +1,115 @@
+table 'Fact Network analysis'
+	lineageTag: a8769c52-1326-42ca-9ca8-3b4df6b0598d
+
+	measure 'Total Frequency Game1' = ```
+			
+			CALCULATE(
+			    SUM('Fact Network Analysis'[frequency]),
+			    USERELATIONSHIP('Fact Network Analysis'[game_1], 'UniqueGames'[Game])
+			)
+			
+			```
+		lineageTag: 6c8e04ba-72bc-4a7d-ae70-72ff884ce4ed
+
+	measure 'Total Frequency Game2' =
+			
+			CALCULATE(
+			    SUM('Fact Network Analysis'[frequency]),
+			    USERELATIONSHIP('Fact Network Analysis'[game_2], 'UniqueGames'[Game])
+			)
+		lineageTag: 8fa722b9-a10d-44c8-ae06-365baf2ee60a
+
+	measure 'Total Frequency' =
+			
+			[Total Frequency Game1] + [Total Frequency Game2]
+		formatString: 0
+		lineageTag: c0f6e35e-34b7-4871-8dc0-6b07977d8274
+
+	measure GameFilterMeasure =
+			
+			CALCULATE (
+			    COUNTROWS('Fact Network Analysis'),
+			    USERELATIONSHIP('Fact Network Analysis'[game_1], 'UniqueGames'[Game])
+			) +
+			CALCULATE (
+			    COUNTROWS('Fact Network Analysis'),
+			    USERELATIONSHIP('Fact Network Analysis'[game_2], 'UniqueGames'[Game])
+			)
+		formatString: 0
+		lineageTag: dc1fca98-aa21-4881-86c9-1fbefbc60952
+
+	column jurisdiction
+		dataType: string
+		lineageTag: 40dcbf78-6ca2-4626-9e32-6e857c87edf2
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Favourite_Game_mod
+		dataType: string
+		lineageTag: 7123db76-38b5-4dab-9c45-ceaa7727ebfe
+		summarizeBy: none
+		sourceColumn: Favourite_Game_mod
+
+		annotation SummarizationSetBy = Automatic
+
+	column frequency
+		dataType: int64
+		formatString: 0
+		lineageTag: 35fdcd8e-b3e4-480f-9954-873df7f060be
+		summarizeBy: sum
+		sourceColumn: frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_1
+		dataType: string
+		lineageTag: 07b0e157-f42b-474b-9b6a-8033b8cdd387
+		summarizeBy: none
+		sourceColumn: game_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_2
+		dataType: string
+		lineageTag: e2c27e1f-eb8f-42af-b0d4-dc17c19b54b3
+		summarizeBy: none
+		sourceColumn: game_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ranking
+		dataType: string
+		lineageTag: 56a7bc7a-4446-48a3-901f-38b68a1ca90e
+		summarizeBy: none
+		sourceColumn: Ranking
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_period
+		dataType: string
+		lineageTag: 7c36a6a5-2da5-4900-82eb-9189cc9fbda6
+		summarizeBy: none
+		sourceColumn: date_period
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Network analysis' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    #"Fact Recommended Games (3)" = fn_ReadDeltaTable(
+				    AzureStorage.DataLake(
+				"https://fadpadlsnedev.dfs.core.windows.net/demodata/demogamerecs/networkAnalysis", 
+				        [HierarchicalNavigation = false])),
+				    #"Filtered Rows" = Table.SelectRows(#"Fact Recommended Games (3)", each true)
+				in
+				    #"Filtered Rows"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

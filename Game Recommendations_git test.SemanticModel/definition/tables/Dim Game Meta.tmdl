@@ -1,0 +1,63 @@
+table 'Dim Game Meta'
+	lineageTag: 1a38911c-1c46-4e15-8e00-d812da2d52db
+
+	column site
+		dataType: string
+		lineageTag: e0704c7f-3901-439d-885d-7818388b5bed
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	column jurisdiction
+		dataType: string
+		lineageTag: 50a5d2f3-1e59-4901-9758-c4f95f49770f
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column gameId
+		dataType: string
+		lineageTag: a1395204-439b-432f-b39a-06a48066b32b
+		summarizeBy: none
+		sourceColumn: gameId
+
+		annotation SummarizationSetBy = Automatic
+
+	column gameName
+		dataType: string
+		lineageTag: 8695fab6-2d1d-4153-b454-a1d39ffe55a5
+		summarizeBy: none
+		sourceColumn: gameName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Game Meta' = m
+		mode: import
+		queryGroup: Dim
+		source = ```
+				let
+				    Client = Client,
+				    Version = Version,
+				    Base = Base,
+				 
+				    #"Custom URL" = Base & Client & "/demogamerecs/dimGameMeta/",
+				    
+				    #"Read Table" = fn_ReadDeltaTable(
+				        AzureStorage.DataLake(
+				            #"Custom URL", 
+				            [HierarchicalNavigation = false]
+				        )
+				    ),
+				    Custom1 = #"Read Table",
+				    #"Lowercased Text" = Table.TransformColumns(Custom1,{{"gameId", Text.Lower, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Lowercased Text", {"gameId"})
+				in
+				    #"Removed Duplicates"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

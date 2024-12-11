@@ -1,0 +1,46 @@
+table 'Rank Table'
+	isHidden
+	lineageTag: 99137387-14f8-43c7-9088-824cd5537ea5
+
+	column 'Selected Rank'
+		dataType: string
+		isHidden
+		lineageTag: ac3ada35-0f40-4178-b0dd-626b27f20cd9
+		summarizeBy: none
+		sourceColumn: Selected Rank
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e861a1e4-2414-4495-8e93-e6ede074a04d
+		summarizeBy: sum
+		sourceColumn: Order
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Rank Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("TdE9CsNgDIPhq5Rv7hBJ+b1G15Chc6H3H2uFgrUYXk8P9nmO1/v7eWA8B8b1/Ccr2alKdc6Vc+dSuXSulWvnVrl17pV751F5dGKyY4rFDQsZTEPYYBxCB/MQPhiIEMJEhBFGIpQwE+GEoQgpLWVIaSnzhvcRQ0pLGVJaypDSUoaUljKktJQhpaUMKS1lSGWpQipLFVJZqvz3/fCQylKFVJYqpLJUIZWlCqksVUhlqUI6W1rjun4=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Selected Rank" = _t, Order = _t])
+				in
+				    Source
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

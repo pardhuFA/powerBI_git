@@ -1,0 +1,1473 @@
+table 'Key Measures'
+	lineageTag: b78cdbcb-6d3d-4336-8892-38de1bfce6df
+
+	measure 'User period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [Player Count],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Period 1
+		lineageTag: 2983d8f5-17e9-4566-b53e-77f5e95248cf
+
+		changedProperty = IsHidden
+
+	measure 'Total Stakes' = SUM('Fact Player Group'[Stake])
+		displayFolder: Base
+		lineageTag: ccbc7d90-f96d-4570-b337-537dcc8cc7a4
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'Stakes period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [Total Stakes],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		displayFolder: Period 1
+		lineageTag: 1393b75f-fceb-4bc1-923f-c0b3c655d74b
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'Avg User period2' = ```
+			
+			VAR MINDATEPERIOD2 = MIN('DimCalendar Period 2'[Date])
+			VAR MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			VAR NoOfDays = DATEDIFF(MINDATEPERIOD2, MAXDATEPERIOD2, DAY) + 1
+			VAR AvgPlayerCount = 
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('Fact Player Group'[numPlayers]),
+			            NoOfDays,
+			            0 
+			        ),
+			        FILTER(
+			            DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+			VAR SumOfAverages = 
+			    SUMX(
+			        SUMMARIZE(
+			            'Fact Player Group',
+			            'Fact Player Group'[playerType],
+			            "AvgPlayers", 
+			            CALCULATE(
+			                DIVIDE(
+			                    SUM('Fact Player Group'[numPlayers]),
+			                    NoOfDays,
+			                    0
+			                ),
+			                FILTER(
+			                    'DimCalendar',
+			                    'DimCalendar'[Date] >= MINDATEPERIOD2 && 'DimCalendar'[Date] <= MAXDATEPERIOD2
+			                )
+			            )
+			        ),
+			        [AvgPlayers]
+			    )
+			RETURN
+			    IF(
+			        ISINSCOPE('Fact Player Group'[playerType]), 
+			        AvgPlayerCount,
+			        SumOfAverages
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: 3575b583-a43b-4c29-8a06-0a74317c6f34
+
+		changedProperty = IsHidden
+
+	measure 'Stakes period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [Total Stakes],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		displayFolder: Period 2
+		lineageTag: 5ea3a311-6b0a-4f68-9132-999a2fcf87f6
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'NGR period1' = ```
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return 
+			    CALCULATE(
+			        [Total NGR],
+			        FILTER(DimCalendar ,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			```
+		displayFolder: Period 1
+		lineageTag: 54025ac9-773b-4487-ba69-46fd9900cfcd
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'Total NGR' = SUM('Fact Player Group'[NGR])
+		displayFolder: Base
+		lineageTag: 6121dbb8-be91-4f75-96fe-fc906e58ed74
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'NGR period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [Total NGR],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		displayFolder: Period 2
+		lineageTag: 4f76aae4-4677-435b-8d53-68070f634b1f
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'Total Spins' = SUM('Fact Player Group'[Spins])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 991ae686-2aef-4c5f-b5b4-482dbfc9a32c
+
+		changedProperty = IsHidden
+
+	measure 'Spins period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [Total Spins],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Period 1
+		lineageTag: 6f66299f-aed9-4e75-bcb5-739930005cf3
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Spins period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [Total Spins],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: 1a6946a8-cd77-47c4-be1a-1fb2b872dc3a
+
+		changedProperty = IsHidden
+
+	measure StakesPerPlayer = ```
+			DIVIDE([Total Stakes], [Player Count]) 
+			```
+		displayFolder: Base
+		lineageTag: 496c3ab7-3c3b-4bbf-aa9d-41aaf432fd38
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'StakesPerPlayer period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [StakesPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		displayFolder: Period 1
+		lineageTag: bb4dafb7-710d-40f9-bb47-e8a61d670991
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'StakesPerPlayer period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [StakesPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		displayFolder: Period 2
+		lineageTag: 36aa7135-8269-4042-b433-3bb286e3ee10
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'NGRPerPlayer period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [NGRPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		displayFolder: Period 1
+		lineageTag: 11fa6400-34f3-4b0a-8fa0-5b4c0ecdf6a4
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure 'NGRPerPlayer period2' = ```
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [NGRPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+			
+			```
+		displayFolder: Period 2
+		lineageTag: 311a6203-d230-466e-8bf1-725580aa3c4e
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+		changedProperty = IsHidden
+
+	measure SpinsPerPlayer = DIVIDE([Total Spins], [Player Count])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 2a5ba47b-d0b1-41a0-9f6a-a295adb602aa
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'SpinsPerPlayer period1' = ```
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [SpinsPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Period 1
+		lineageTag: 9813d1ef-ed89-48dd-86f1-437d586e6fac
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'SpinsPerPlayer period2' = ```
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [SpinsPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: 6c610f9c-efb4-46cb-ac0c-09ccb8d84f56
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure GamesPerPlayer = SUM('Fact Player Group'[avg_games_per_player])
+		displayFolder: Base
+		lineageTag: e85d4915-93c4-47a4-9f0c-f0db09406269
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GamesPerPlayerRatio period2' = ```
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [GamesPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+			
+			```
+		formatString: #,0.00
+		displayFolder: Period 2
+		lineageTag: 3eda8652-f053-4da9-980f-6242ec072d0b
+
+		changedProperty = IsHidden
+
+	measure 'GamesPerPlayerRatio period1' = ```
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [GamesPerPlayer],
+			        FILTER('DimCalendar',
+			            'DimCalendar'[Date] >= MINDATEPERIOD1 && 'DimCalendar'[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			```
+		formatString: #,0.00
+		displayFolder: Period 1
+		lineageTag: 97899dfa-9e7c-4b92-8c06-88e6536ee9c9
+
+		changedProperty = IsHidden
+
+	measure 'Period 1 - No of Days' = ```
+			
+			 Var days = COUNTROWS(VALUES('DimCalendar Period 1'[Date]))
+			 Var period = "Period 1  "
+			 Return
+			CONCATENATE(CONCATENATE(" ",days)," Days Selected")
+			```
+		displayFolder: Period 1
+		lineageTag: dbab5fe0-b9a1-44a8-878b-1fe46456b076
+
+		changedProperty = IsHidden
+
+	measure 'Period 2 - No of Days' = ```
+			
+			var days = COUNTROWS(VALUES('DimCalendar Period 2'[Date]))
+			 Var period = " Period 2  "
+			 Return 
+			CONCATENATE(CONCATENATE(" ",days)," Days Selected")
+			```
+		displayFolder: Period 2
+		lineageTag: 39624437-12d5-47f2-ba55-89171dbc283e
+
+		changedProperty = IsHidden
+
+	measure difference_of_GamesPerPlayerRatio = ([GamesPerPlayerRatio period2]-[GamesPerPlayerRatio period1])/[GamesPerPlayerRatio period1]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Delta
+		lineageTag: 797a8c58-c573-4e6f-9b18-c88826bf6aad
+
+		changedProperty = IsHidden
+
+	measure difference_of_NGR = ([NGR period2]-[NGR period1])/[NGR period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: f166fe27-8cc8-493d-98a2-047221987260
+
+		changedProperty = IsHidden
+
+	measure difference_of_NGRPerPlayer = ([NGRPerPlayer period2]-[NGRPerPlayer period1])/[NGRPerPlayer period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: a5e4297f-7ebd-40ce-b688-d2bb1a25da91
+
+		changedProperty = IsHidden
+
+	measure difference_of_user = ([Avg User period2] - [Avg User period1])/[Avg User period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: 4f78db51-6a4a-472c-bdc2-dc6e60c95624
+
+		changedProperty = IsHidden
+
+	measure difference_of_Spins = ([Spins period2]-[Spins period1])/[Spins period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: e7b635d5-80fd-41c4-ade9-5320c1dc5562
+
+		changedProperty = IsHidden
+
+	measure difference_of_SpinsPerPlayer = ([SpinsPerPlayer period2]-[SpinsPerPlayer period1])/[SpinsPerPlayer period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: c4e90f21-b7cc-4622-b928-3f46339c517d
+
+		changedProperty = IsHidden
+
+	measure difference_of_Stakes = ([Stakes period2]-[Stakes period1])/[Stakes period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: 286cded6-8e3d-4d8d-a01e-481b709c5c56
+
+		changedProperty = IsHidden
+
+	measure difference_of_StakesPerPlayer = ([StakesPerPlayer period2]-[StakesPerPlayer period1])/[StakesPerPlayer period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: 77e5fa69-1ca1-41c5-b66c-4745855727b7
+
+		changedProperty = IsHidden
+
+	measure 'Total Sessions' = sum('Fact Player Group'[sessions])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: b0514f93-842c-4216-a426-86f042370ce9
+
+		changedProperty = IsHidden
+
+	measure 'Totalsessions period1' =
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [Total Sessions],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Period 1
+		lineageTag: 7e1d47ec-e0bd-4ba2-9a3a-61bfeea82f61
+
+		changedProperty = IsHidden
+
+	measure 'Totalsessions period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [Total Sessions],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: 6ce502de-1f8b-4e73-9366-77678e7b457d
+
+		changedProperty = IsHidden
+
+	measure difference_of_totalsessions = ([Totalsessions period2] - [Totalsessions period1])/[Totalsessions period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: e3d8d282-7561-46a7-a8f8-2492d7c1625c
+
+		changedProperty = IsHidden
+
+	measure SessionsPerPlayer = DIVIDE([Total Sessions], [Player Count])
+		formatString: #,0.00
+		displayFolder: Base
+		lineageTag: 4236f10e-02ba-43d4-9055-f31269fd96be
+
+		changedProperty = IsHidden
+
+	measure 'TotalSessionsPerPlayer period1' = ```
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [SessionsPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			```
+		displayFolder: Period 1
+		lineageTag: 0b56a822-c7a8-4a88-9b2e-927eca67291f
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TotalSessionsPerPlayer period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [SessionsPerPlayer],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+		formatString: #,0.00
+		displayFolder: Period 2
+		lineageTag: 8cc3842d-b817-4bc1-8702-ec77d43baf82
+
+		changedProperty = IsHidden
+
+	measure difference_of_totalsessionsPerPlayer = ([TotalSessionsPerPlayer period2]-[TotalSessionsPerPlayer period1])/[TotalSessionsPerPlayer period1]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Delta
+		lineageTag: 519c76ec-6e3e-49bc-acd5-d8c5de2d171a
+
+		changedProperty = IsHidden
+
+	measure 'Total Games' = Sum('Fact Player Group'[total_games])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 7b69051f-f382-4091-8cec-c5ba96a283e3
+
+		changedProperty = IsHidden
+
+	measure 'Total Players' = sum('Fact Player Group'[numPlayers])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: fef3f37a-869b-4110-be92-d46e25d72015
+
+		changedProperty = IsHidden
+
+	measure 'Sum of Recommendations' = Sum('Fact Recommended Games'[recc_times])
+		formatString: #,0
+		displayFolder: Sum of Ranks (Total recommendations)
+		lineageTag: 196af5ac-51d2-449f-8f60-81f6902cd556
+
+	measure 'Games period1' = ```
+			
+			var MINDATEPERIOD1 =MIN('DimCalendar Period 1'[Date])
+			Var MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			Return
+			    CALCULATE(
+			        [Total Games],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD1 && DimCalendar[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Period 1
+		lineageTag: 59f646eb-fcaa-4188-9f3c-1ca18071746f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Games period2' = ```
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			        [Total Games],
+			        FILTER(DimCalendar,
+			            DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: febe313a-3d2a-4149-bdc0-f163bf71e235
+
+	measure difference_of_Games = ([Games period2]-[Games period1])/[Games period1]
+		formatString: 0%;-0%;0%
+		displayFolder: Delta
+		lineageTag: e4ac641c-b905-4365-b41f-6b768f8d0f41
+
+	measure 'Player Count' = SUM('Fact Player Group'[numPlayers])
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: aeaed7e0-2302-4984-aa4c-c093b1f973e4
+
+	measure 'Group comparison title' = SELECTEDVALUE('Parameter Group Comparison 2'[Metric Name]) & " :" & " Target vs Control Groups"
+		displayFolder: Group Comparison Page
+		lineageTag: 28a5cd00-0768-4a25-8024-837a1ef09275
+
+	measure 'Recommended Stakes' = SUM('Fact Recommended Games'[stakes_recplayed])
+		displayFolder: Base
+		lineageTag: 4c55219d-45d1-4afc-afc7-88ebf42c1d80
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Recommended StakesPerPlayer' = DIVIDE([Recommended Stakes], [Player Count])
+		displayFolder: Base
+		lineageTag: b82001a4-06ef-45fa-ae09-69c5c098fd8d
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Top 5 Games Stakes' =
+			
+			VAR Top5Games =
+			    TOPN(
+			        5,
+			        FILTER(
+			            SUMMARIZE(
+			                ALL('Dim Game Meta'),
+			                'Dim Game Meta'[gameName],
+			                "Total Stakes Game Stats", [Total Stakes Game Stats]
+			            ),
+			            [Total Stakes Game Stats] <> BLANK()
+			        ),
+			        [Total Stakes Game Stats], DESC
+			    )
+			VAR CurrentGame = SELECTEDVALUE('Dim Game Meta'[gameName])
+			RETURN
+			    IF(
+			        CurrentGame IN SELECTCOLUMNS(Top5Games, "Gamename", 'Dim Game Meta'[gameName]),
+			        [Total Stakes Game Stats],
+			        BLANK()
+			    )
+		displayFolder: Base
+		lineageTag: 8128ee98-36f8-4c54-9e01-c1758de781c0
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Top 10 Games Stakes' =
+			
+			VAR Top10Games =
+			    TOPN(
+			        10,
+			        FILTER(
+			            SUMMARIZE(
+			                ALL('Dim Game Meta'),
+			                'Dim Game Meta'[gameName],
+			                "Total Stakes Game Stats", [Total Stakes Game Stats]
+			            ),
+			            [Total Stakes Game Stats] <> BLANK()
+			        ),
+			        [Total Stakes Game Stats], DESC
+			    )
+			VAR CurrentGame = SELECTEDVALUE('Dim Game Meta'[gameName])
+			RETURN
+			    IF(
+			        CurrentGame IN SELECTCOLUMNS(Top10Games, "Gamename", 'Dim Game Meta'[gameName]),
+			        [Total Stakes Game Stats],
+			        BLANK()
+			    )
+		displayFolder: Base
+		lineageTag: dd00222c-be03-4935-830e-903aedc9e884
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure NGRPerPlayer = ```
+			DIVIDE([Total NGR], [Player Count]) 
+			```
+		displayFolder: Base
+		lineageTag: 59d807df-0038-4632-8057-6f44f2ae1d41
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Recommendation Impact Page Title 2' = SELECTEDVALUE('Parameter Recommendation Impact'[Metric Name]) & " by Stakes"
+		displayFolder: Recommendation Impact Page
+		lineageTag: 25e5ef6e-a1b8-4600-b711-3b4b64ad21ac
+
+	measure 'Top Recommendation Label Title' = ```
+			
+			VAR GameName = SELECTEDVALUE('Fact Recommended Games'[recc_game])
+			VAR RecRank = [Game Rank by Stakes]
+			VAR data = SUM('Fact Recommended Games'[recc_times])
+			VAR FormattedValue =  
+			    SWITCH(
+			        TRUE(),
+			        data >= 1000000000, FORMAT(data / 1000000000, "0.00B"),
+			        data >= 100000 && data< 1000000000 , FORMAT(data / 1000000, "0.00M"),
+			        data >= 1000 && data < 100000, FORMAT(data / 1000, "0.0K"),
+			        FORMAT(data, "0")
+			    )
+			VAR Label = 
+			    "Rank by Stake #" & RecRank & " " & "| " & "Total Times Recommended " & FormattedValue
+			RETURN Label
+			
+			```
+		displayFolder: Top Recommendation Page
+		lineageTag: a06d0353-499e-4741-bca2-4924d1e0a228
+
+	measure 'Top Recommendation Label Value' = 0
+		formatString: 0
+		displayFolder: Top Recommendation Page
+		lineageTag: 3daee488-de7b-42f8-9ef6-c5a1aedabef9
+
+	measure 'Recommendation Impact Page Title 1' = SELECTEDVALUE('Dim Game Meta'[gameName]) & " : Total Stakes vs Number of Times Recommended"
+		displayFolder: Recommendation Impact Page
+		lineageTag: cf679173-bfc2-45f5-b7cb-be2a451dba01
+
+	measure DynamicSumMultiple =
+			
+			VAR r1Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 1"), SUM('Fact Recommended Games'[1]), 0)
+			VAR r2Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 2"), SUM('Fact Recommended Games'[2]), 0)
+			VAR r3Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 3"), SUM('Fact Recommended Games'[3]), 0)
+			VAR r4Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 4"), SUM('Fact Recommended Games'[4]), 0)
+			VAR r5Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 5"), SUM('Fact Recommended Games'[5]), 0)
+			VAR r6Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 6"), SUM('Fact Recommended Games'[6]), 0)
+			VAR r7Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 7"), SUM('Fact Recommended Games'[7]), 0)
+			VAR r8Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 8"), SUM('Fact Recommended Games'[8]), 0)
+			VAR r9Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 9"), SUM('Fact Recommended Games'[9]), 0)
+			VAR r10Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 10"), SUM('Fact Recommended Games'[10]), 0)
+			VAR r11Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 11"), SUM('Fact Recommended Games'[11]), 0)
+			VAR r12Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 12"), SUM('Fact Recommended Games'[12]), 0)
+			VAR r13Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 13"), SUM('Fact Recommended Games'[13]), 0)
+			VAR r14Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 14"), SUM('Fact Recommended Games'[14]), 0)
+			VAR r15Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 15"), SUM('Fact Recommended Games'[15]), 0)
+			VAR r16Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 16"), SUM('Fact Recommended Games'[16]), 0)
+			VAR r17Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 17"), SUM('Fact Recommended Games'[17]), 0)
+			VAR r18Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 18"), SUM('Fact Recommended Games'[18]), 0)
+			VAR r19Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 19"), SUM('Fact Recommended Games'[19]), 0)
+			VAR r20Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 20"), SUM('Fact Recommended Games'[20]), 0)
+			VAR r21Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 21"), SUM('Fact Recommended Games'[21]), 0)
+			VAR r22Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 22"), SUM('Fact Recommended Games'[22]), 0)
+			VAR r23Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 23"), SUM('Fact Recommended Games'[23]), 0)
+			VAR r24Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 24"), SUM('Fact Recommended Games'[24]), 0)
+			VAR r25Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 25"), SUM('Fact Recommended Games'[25]), 0)
+			VAR r26Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 26"), SUM('Fact Recommended Games'[26]), 0)
+			VAR r27Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 27"), SUM('Fact Recommended Games'[27]), 0)
+			VAR r28Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 28"), SUM('Fact Recommended Games'[28]), 0)
+			VAR r29Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 29"), SUM('Fact Recommended Games'[29]), 0)
+			VAR r30Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 30"), SUM('Fact Recommended Games'[30]), 0)
+			VAR r31Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 31"), SUM('Fact Recommended Games'[31]), 0)
+			VAR r32Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 32"), SUM('Fact Recommended Games'[32]), 0)
+			VAR r33Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 33"), SUM('Fact Recommended Games'[33]), 0)
+			VAR r34Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 34"), SUM('Fact Recommended Games'[34]), 0)
+			VAR r35Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 35"), SUM('Fact Recommended Games'[35]), 0)
+			VAR r36Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 36"), SUM('Fact Recommended Games'[36]), 0)
+			VAR r37Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 37"), SUM('Fact Recommended Games'[37]), 0)
+			VAR r38Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 38"), SUM('Fact Recommended Games'[38]), 0)
+			VAR r39Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 39"), SUM('Fact Recommended Games'[39]), 0)
+			VAR r40Selected = IF(CONTAINS(VALUES('Rank Table'[Selected Rank]), 'Rank Table'[Selected Rank], "Rank 40"), SUM('Fact Recommended Games'[40]), 0)
+			
+			RETURN
+			    r1Selected + r2Selected + r3Selected + r4Selected + r5Selected +r6Selected +r7Selected +r8Selected + r9Selected + r10Selected + r11Selected + r12Selected + r13Selected +r14Selected +r15Selected +r16Selected + r17Selected + r18Selected +r19Selected + r20Selected +r21Selected +r22Selected + r23Selected + r24Selected +r25Selected + r26Selected + r27Selected + r28Selected + r29Selected + r30Selected + r31Selected + r32Selected +r33Selected +r34Selected +r35Selected +r36Selected +r37Selected +r38Selected + r39Selected + r40Selected
+		formatString: #,0
+		displayFolder: Sum of Ranks (Total recommendations)
+		lineageTag: 78ed1e74-446e-4e95-a5af-b11ebf555013
+
+	measure 'User period2' =
+			
+			var MINDATEPERIOD2 =MIN('DimCalendar Period 2'[Date])
+			Var MAXDATEPERIOD2 = MAX('DimCalendar Period 2'[Date])
+			Return
+			    CALCULATE(
+			    [Player Count],
+			    FILTER(
+			        DimCalendar,
+			        DimCalendar[Date] >= MINDATEPERIOD2 && DimCalendar[Date] <= MAXDATEPERIOD2
+			    )
+			)
+		formatString: #,0
+		displayFolder: Period 2
+		lineageTag: ae5d30d1-2a92-4e57-8692-1678adbc642a
+
+	measure 'Avg User period1' = ```
+			
+			VAR MINDATEPERIOD1 = MIN('DimCalendar Period 1'[Date])
+			VAR MAXDATEPERIOD1 = MAX('DimCalendar Period 1'[Date])
+			VAR NoOfDays = DATEDIFF(MINDATEPERIOD1, MAXDATEPERIOD1, DAY) + 1
+			
+			VAR AvgPlayerCount = 
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('Fact Player Group'[numPlayers]),
+			            NoOfDays,
+			            0
+			        ),
+			        FILTER(
+			            'DimCalendar',
+			            'DimCalendar'[Date] >= MINDATEPERIOD1 && 'DimCalendar'[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			VAR SumOfAverages = 
+			    SUMX(
+			        SUMMARIZE(
+			            'Fact Player Group',
+			            'Fact Player Group'[playerType],
+			            "AvgPlayers", 
+			            CALCULATE(
+			                DIVIDE(
+			                    SUM('Fact Player Group'[numPlayers]),
+			                    NoOfDays,
+			                    0
+			                ),
+			                FILTER(
+			                    'DimCalendar',
+			                    'DimCalendar'[Date] >= MINDATEPERIOD1 && 'DimCalendar'[Date] <= MAXDATEPERIOD1
+			                )
+			            )
+			        ),
+			        [AvgPlayers]
+			    )
+			
+			RETURN
+			    IF(
+			        ISINSCOPE('Fact Player Group'[playerType]), 
+			        AvgPlayerCount,
+			        SumOfAverages
+			    )
+			
+			```
+		displayFolder: Period 1
+		lineageTag: 1b31110d-999e-4b60-9cc9-9dbcf3c7efbc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top 5 Game Stakes' = ```
+			
+			IF(
+			    [Game Rank by Stakes] <= 5,
+			    [Recommended Stakes],
+			    BLANK()
+			)
+			
+			```
+		displayFolder: Base
+		lineageTag: 6234b5bb-d07a-4997-ab28-fb34724068f9
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Game Rank by Stakes' =
+			
+			RANKX(
+			    ALL('Dim Game Meta'[gameName]),
+			    [Total Stakes Game Stats],
+			    ,
+			    DESC,
+			    DENSE)
+		formatString: 0
+		displayFolder: Base
+		lineageTag: 7562b3b1-e0a0-4f62-aa11-a18a74b853cb
+
+	measure 'Active players' = SUM('Fact Recommended Games'[number_of_active_users_recommend_game])
+		formatString: 0
+		displayFolder: Base
+		lineageTag: 22589f8c-4450-4c2f-9fc6-25ce146a1124
+
+	measure 'Active players who played recc' = SUM('Fact Recommended Games'[number_of_active_users_recommend_game_played])
+		formatString: 0
+		displayFolder: Base
+		lineageTag: bfc52e55-3ef0-4d2f-addc-2f19d7c8ffda
+
+	measure '% who played recommendation' = DIVIDE([Active players who played recc],[Active players],0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Base
+		lineageTag: 92c5f119-0369-48ca-8da4-9fe919089353
+
+	measure '1.Today' = TODAY()
+		formatString: Short Date
+		displayFolder: Base
+		lineageTag: f33f9ecd-aff9-4c40-bbf0-f60f0a52b84d
+
+	measure label = ```
+			
+			VAR month_diff = [Weekly previous recc] - [Weekly recc]
+			VAR mom = DIVIDE(month_diff, [Weekly previous recc], 0)
+			VAR _sign = IF(month_diff > 0, "+", " ")
+			VAR sign_trend = IF(month_diff > 0, "▲", "▼")
+			RETURN
+			    sign_trend & " " & _sign & 
+			    FORMAT(mom, "0.0%") & " | " & 
+			    _sign & month_diff & " vs LW"
+			```
+		displayFolder: Top Recommendation Page
+		lineageTag: e65a34ea-386f-41ea-8d98-8ed15ff24ec4
+
+	measure 'Recommendation Ranking Text' = ```
+			
+			"For Recommendation Rankings: " & 
+			    CONCATENATEX(
+			        VALUES('Rank Table'[selected rank]), 
+			        'Rank Table'[selected rank], 
+			        ", "
+			    )
+			
+			```
+		displayFolder: Top Recommendation Page
+		lineageTag: 7a3f589f-6492-4401-a1c0-df0f135e6006
+
+	measure Control = ```
+			
+			    CALCULATE(
+			        SUM('Fact Player Group'[numPlayers]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		formatString: 0
+		displayFolder: Player Group\Control
+		lineageTag: ef7273e5-c5f5-417c-8c5f-5aabb5355b1d
+
+	measure 'Target & Rec Not Played' = ```
+			
+			    CALCULATE(
+			        SUM('Fact Player Group'[numPlayers]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		formatString: 0
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: b4e2c6eb-d43f-48d8-8381-8a61f05282cd
+
+	measure 'Target & Rec Played' = ```
+			
+			    CALCULATE(
+			        SUM('Fact Player Group'[numPlayers]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		formatString: 0
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: d151c8d5-28b8-4a34-bb96-839eadd2649f
+
+	measure 'Control Games Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Games],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )   
+			```
+		displayFolder: Player Group\Control
+		lineageTag: dbb70e35-6d0f-4bf5-ae0c-df9a53082dd0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Control Sessions Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Sessions],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Player Group\Control
+		lineageTag: e52859b6-df66-4f81-b199-70ada46c85ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Control Spins Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Spins],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Player Group\Control
+		lineageTag: 04701834-6249-4d64-a777-6881460d4c56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Control Stakes Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Stakes],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Player Group\Control
+		lineageTag: 8dfa11eb-f60b-4162-9485-47db82417a49
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Control NGR Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total NGR],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Player Group\Control
+		lineageTag: fa625538-98ec-46a3-8f2f-89f511b1ebd6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Played Games Per Player' = ```
+			
+			    CALCULATE(
+			        SUM('Fact Player Group'[avg_games_per_player]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: 530f4e01-3642-4752-88ae-eab352c580fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Played NGR Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total NGR],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: 1e38e062-0c54-4ba9-9fbe-3d7a50d43ccb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Played Sessions Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Sessions],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: fc72ae13-777a-430c-ae18-eb916621109b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Played Spins Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Spins],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: de6c6d4c-3a67-44e5-b884-9a690b71ec32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Played Stakes Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Stakes],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: 4e69a579-cd63-4518-9d0f-9a03ffeff57d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Not Played Games Per Player' = ```
+			
+			    CALCULATE(
+			        SUM('Fact Player Group'[avg_games_per_player]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: ccd73bcb-8aaa-4633-ac53-47c05df57681
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Not Played NGR Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total NGR],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: dc28a08a-d567-47f2-ad4c-61b1dce06936
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Not Played Sessions Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Sessions],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: 8b5cd675-becd-447e-ab73-57fc50a4107b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Not Played Spins Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Spins],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: 1dddc3e3-e5e4-418c-8095-257d5a52340a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target & Rec Not Played Stakes Per Player' = ```
+			
+			    CALCULATE(
+			        DIVIDE([Total Stakes],[Total Players]),
+			        'Fact Player Group'[Player Group] = "Target & Rec Not Played"
+			    )
+			```
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: 5d49ba80-5de9-412c-8973-7cf5d320860b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sum of target Groups' =
+			
+			CALCULATE(
+			    VAR target_recc_sum = [Target & Rec Played]
+			    VAR target_sum = ([Target & Rec Not Played]+[Target & Rec Played])/2
+			    VAR result = DIVIDE(target_recc_sum, target_sum, 0)
+			    RETURN result
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Base
+		lineageTag: 50336f8c-98f0-4ec6-b0b5-5e5456ea925c
+
+	measure 'No of Days' =
+			
+			VAR days = COUNTROWS(VALUES('DimCalendar'[Date]))
+			RETURN
+			days & " Days Selected"
+		displayFolder: Base
+		lineageTag: 5b21fb90-d76d-4f63-b4da-c747991c2ba7
+
+	measure 'Target & Rec Not Played %' = ```
+			DIVIDE([Target & Rec Not Played],[Total Players],0)
+			   
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Player Group\Target & Rec Not Played
+		lineageTag: e193ba5b-b49f-4bf6-8177-4e56c920b603
+
+	measure 'Target & Rec Played %' = ```
+			DIVIDE([Target & Rec Played],[Total Players],0)
+			   
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Player Group\Target & Rec Played
+		lineageTag: 21344c85-1aac-427f-94c4-960af57308a7
+
+	measure 'Games per Player avg' = DIVIDE([Total Games],[Total Players],0)
+		displayFolder: Base
+		lineageTag: 1c31be05-c3c1-4b0e-bcf0-4f48979774ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Last 30 Days Avg Spins' =
+			
+			VAR TodayDate = [1.Today]
+			RETURN
+			CALCULATE (
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[spins] ),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			    FILTER(
+			        'DimCalendar',
+			        'DimCalendar'[Date] > TodayDate - 30 &&
+			        'DimCalendar'[Date] <= TodayDate
+			    )
+			)
+		displayFolder: Highlights Page
+		lineageTag: 0ec485e0-6458-4dfd-a711-344b04ad8699
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Last 30 Days Avg Stakes' =
+			
+			VAR TodayDate = [1.Today]
+			RETURN
+			CALCULATE(
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[stakes]),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			    FILTER(
+			        'DimCalendar',
+			        'DimCalendar'[Date] > TodayDate - 30 &&
+			        'DimCalendar'[Date] <= TodayDate
+			    )
+			)
+		displayFolder: Highlights Page
+		lineageTag: e8e5f4a2-b70e-49b4-8a02-d5833292ebb3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Last 30 Days Avg Games' =
+			
+			VAR TodayDate = [1.Today]
+			RETURN
+			CALCULATE(
+			    AVERAGE('Fact Player Group'[avg_games_per_player]),
+			    FILTER(
+			        'DimCalendar',
+			        'DimCalendar'[Date] > TodayDate - 30 &&
+			        'DimCalendar'[Date] <= TodayDate
+			    )
+			)
+		displayFolder: Highlights Page
+		lineageTag: beb61476-54b9-4673-8bbc-0e171ea86779
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Stakes Game Stats' = SUM('Fact Games Stats'[stakes])
+		displayFolder: Base
+		lineageTag: f9d209e6-9807-4c02-bd26-f7b5feafa7fa
+
+		formatStringDefinition = SELECTEDVALUE('Dim Currency'[Format])
+
+	measure 'Weekly Played a Rec % PW' =
+			
+			CALCULATE (
+			   [Target & Rec Played],
+			    FILTER (
+			        'DimCalendar',
+			        IF (
+			            WEEKNUM ( [1.Today],2 ) <= 1,
+			            WEEKNUM ( 'DimCalendar'[Date],2 ) = 53
+			                && YEAR ( 'DimCalendar'[Date] )
+			                    = YEAR ( [1.Today] ) - 1
+			                && 'DimCalendar'[Date] <= [1.Today] - 5,  // Change 6 to 5
+			            WEEKNUM ( 'DimCalendar'[Date] ,2)
+			                = WEEKNUM ( [1.Today],2 ) - 1
+			                && YEAR ( 'DimCalendar'[Date] ) = YEAR ( [1.Today] )
+			                && 'DimCalendar'[Date] < [1.Today] - 6
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Highlights Page
+		lineageTag: a48e658c-0a28-49bb-8b4c-63b9bd6fe93f
+
+	measure 'Weekly Played a Rec %' = ```
+			
+			 CALCULATE([Target & Rec Played]
+			            ,FILTER('DimCalendar',
+			                AND(WEEKNUM('DimCalendar'[Date],2) = WEEKNUM([1.Today],2),
+			                    YEAR('DimCalendar'[Date])=YEAR([1.Today]))
+			                    )
+			                   )
+			
+			```
+		formatString: 0
+		displayFolder: Highlights Page
+		lineageTag: 5a3fa0cf-3170-44d3-a9a2-5d673163227f
+
+	measure 'Weekly Played a Rec % Change %' = ```
+			
+			 DIVIDE([Weekly Played a Rec %] -[Weekly Played a Rec % PW]
+			        ,ABS([Weekly Played a Rec % PW]),0)
+			
+			```
+		displayFolder: Highlights Page
+		lineageTag: 7373019d-5aee-48b3-a345-be6202ae2695
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Control stakes per player' = ```
+			
+			    CALCULATE (
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[stakes] ),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Highlights Page
+		lineageTag: f6dd592f-1881-4815-93e3-4435096f1d90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Control spins per player' = ```
+			
+			    CALCULATE (
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[spins] ),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			        'Fact Player Group'[Player Group] = "Control"
+			    )
+			```
+		displayFolder: Highlights Page
+		lineageTag: c28f447d-2d43-42ab-bb55-4039561ef6ae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Control Games per Player' = ```
+			
+			CALCULATE (
+			    AVERAGE('Fact Player Group'[avg_games_per_player]
+			    ),
+			    'Fact Player Group'[Player Group] = "Control"
+			)
+			
+			```
+		displayFolder: Highlights Page
+		lineageTag: 5333f77b-607c-4c40-9e39-d79308fe32c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Played Rec Stakes per Player' = ```
+			
+			CALCULATE (
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[stakes]),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			    'Fact Player Group'[Player Group] = "Target & Rec Played"
+			)
+			
+			```
+		displayFolder: Highlights Page
+		lineageTag: a30e9fb9-c5d1-4c67-b869-a58a4954c049
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Played Rec Spins per Player' = ```
+			
+			CALCULATE (
+			    DIVIDE (
+			        SUM ( 'Fact Player Group'[spins] ),
+			        SUM ( 'Fact Player Group'[numPlayers] ),
+			        0
+			    ),
+			    'Fact Player Group'[Player Group] = "Target & Rec Played"
+			)
+			
+			```
+		displayFolder: Highlights Page
+		lineageTag: 0d4bdc63-3e11-4e3d-8ba6-0ed3070772d7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Played Rec Games per Player' = ```
+			
+			CALCULATE (
+			    AVERAGE('Fact Player Group'[avg_games_per_player]
+			    ),
+			    'Fact Player Group'[Player Group] = "Target & Rec Played"
+			)
+			
+			```
+		displayFolder: Highlights Page
+		lineageTag: fe18518f-cb36-4dbd-b8fc-188d36075134
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average User' = ```
+			
+			VAR MINDATEPERIOD1 = MIN('DimCalendar'[Date])
+			VAR MAXDATEPERIOD1 = MAX('DimCalendar'[Date])
+			VAR NoOfDays = 
+			VAR MINDATEPERIOD1 = MIN('DimCalendar'[Date])
+			VAR MAXDATEPERIOD1 = MAX('DimCalendar'[Date])
+			VAR NoOfDays = 
+			    CALCULATE(
+			        DISTINCTCOUNT('DimCalendar'[Date]),
+			        FILTER(
+			            'Fact Player Group',
+			            'Fact Player Group'[numPlayers] > 0
+			        ),
+			        'DimCalendar'[Date] >= MINDATEPERIOD1,
+			        'DimCalendar'[Date] <= MAXDATEPERIOD1
+			    )
+			RETURN NoOfDays
+			
+			VAR AvgPlayerCount = 
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('Fact Player Group'[numPlayers]),
+			            NoOfDays,
+			            0
+			        ),
+			        FILTER(
+			            'DimCalendar',
+			            'DimCalendar'[Date] >= MINDATEPERIOD1 && 'DimCalendar'[Date] <= MAXDATEPERIOD1
+			        )
+			    )
+			
+			VAR SumOfAverages = 
+			    SUMX(
+			        SUMMARIZE(
+			            'Fact Player Group',
+			            'Fact Player Group'[playerType],
+			            "AvgPlayers", 
+			            CALCULATE(
+			                DIVIDE(
+			                    SUM('Fact Player Group'[numPlayers]),
+			                    NoOfDays,
+			                    0
+			                ),
+			                FILTER(
+			                    'DimCalendar',
+			                    'DimCalendar'[Date] >= MINDATEPERIOD1 && 'DimCalendar'[Date] <= MAXDATEPERIOD1
+			                )
+			            )
+			        ),
+			        [AvgPlayers]
+			    )
+			
+			RETURN
+			    IF(
+			        ISINSCOPE('Fact Player Group'[playerType]), 
+			        AvgPlayerCount,
+			        SumOfAverages
+			    )
+			
+			```
+		formatString: 0
+		displayFolder: Base
+		lineageTag: 03137200-4bc0-4208-946f-095e1cd69b19
+
+	partition 'Key Measures-9be67e5d-bad7-4ed1-ae1f-316d204a7f3c' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

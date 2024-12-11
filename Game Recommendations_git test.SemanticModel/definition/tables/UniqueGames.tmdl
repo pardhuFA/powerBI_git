@@ -1,0 +1,25 @@
+table UniqueGames
+	lineageTag: 468511a1-a0e1-4c5f-9a76-ee99a640fb43
+
+	column Game
+		lineageTag: 149cde00-8085-487d-8078-c210c74fa7af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Game]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UniqueGames = calculated
+		mode: import
+		source = ```
+				
+				    DISTINCT (
+				        UNION (
+				            SELECTCOLUMNS('Fact Network Analysis', "Game", 'Fact Network Analysis'[game_1]),
+				            SELECTCOLUMNS('Fact Network Analysis', "Game", 'Fact Network Analysis'[game_2])
+				        )
+				    )
+				```
+
+	annotation PBI_Id = 9546d017b2644572ae96760b9391ef40
+

@@ -1,0 +1,204 @@
+table 'Fact Player Group'
+	lineageTag: db96c042-1d68-4528-b0b0-f382c9db860a
+
+	column EventDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cbb4dd0f-8599-4e6a-8a03-b99a039a35fe
+		summarizeBy: none
+		sourceColumn: EventDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column playerType
+		dataType: string
+		lineageTag: 56bf47ab-9ed8-4df3-a101-399fb006e6a6
+		summarizeBy: none
+		sourceColumn: playerType
+
+		annotation SummarizationSetBy = Automatic
+
+	column spins
+		dataType: int64
+		formatString: 0
+		lineageTag: a5cfefcc-b04d-459e-85b1-b5761e18e47c
+		summarizeBy: sum
+		sourceColumn: spins
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cdc1009-2455-4cd9-92c3-f61fdbd6f585
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_games
+		dataType: int64
+		formatString: 0
+		lineageTag: bb18b8df-1a40-4dc5-ac2c-eea5826ca3bc
+		summarizeBy: sum
+		sourceColumn: total_games
+
+		annotation SummarizationSetBy = Automatic
+
+	column site
+		dataType: string
+		lineageTag: 9166453c-8b8f-46b9-8202-577dc78b9a50
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	column jurisdiction
+		dataType: string
+		lineageTag: 2109d0f1-06d5-43c7-be81-103c8e5fb3c1
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_games_per_player
+		dataType: double
+		lineageTag: af6d6019-1cee-4c06-9f84-7c6af9c1fde8
+		summarizeBy: sum
+		sourceColumn: avg_games_per_player
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column numPlayers
+		dataType: int64
+		formatString: #,0
+		lineageTag: cea56319-5fcd-4dab-abdc-2bb3a23a8072
+		summarizeBy: sum
+		sourceColumn: numPlayers
+
+		annotation SummarizationSetBy = Automatic
+
+	column payouts
+		dataType: double
+		lineageTag: 2e8930ca-1100-47cd-8a8a-4c98b2eeacda
+		summarizeBy: sum
+		sourceColumn: payouts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ggr
+		dataType: double
+		lineageTag: e5655f65-733f-49e4-af36-6335195e2506
+		summarizeBy: sum
+		sourceColumn: ggr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Player Group' =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Fact Player Group'[playerType],"control"),"Control",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_recc"),"Target & Rec Played",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target"),"Target & Rec Not Played"
+			)
+		lineageTag: deb0676f-fdb3-4675-be46-c390b958fed2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Player Type New' =
+			
+			SWITCH(TRUE(),
+			CONTAINSSTRING('Fact Player Group'[playerType],"control_fav_oth"),"Played Favourite(s) + Non Recommendations",
+			CONTAINSSTRING('Fact Player Group'[playerType],"control_fav"),"Played Favourite(s) only",
+			CONTAINSSTRING('Fact Player Group'[playerType],"control_oth"),"Played Non Recommendation(s) only",
+			
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_fav_oth"),"Played Favourite(s) + Non Recommendation(s) only",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_fav"),"Played Favourite(s) only",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_oth"),"Played Non Recommendation(s) only",
+			
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_recc_fav_oth"),"Played Recommendation(s), Favourite(s) + Non Recommendation(s)",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_recc_oth"),"Played Recommendation(s) + Non Recommendation(s) only",
+			CONTAINSSTRING('Fact Player Group'[playerType],"target_recc"),"Played Recommendation(s) + Favourite(s) only"
+			
+			
+			)
+		lineageTag: 5d58ab32-8535-44eb-8682-c790039177e6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention7
+		dataType: double
+		lineageTag: f4a174d3-d4e5-4284-b8b6-d601da582035
+		summarizeBy: sum
+		sourceColumn: retention7
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retention14
+		dataType: double
+		lineageTag: 5d164509-dd2b-4ecb-a7da-20a365611681
+		summarizeBy: sum
+		sourceColumn: retention14
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retention28
+		dataType: double
+		lineageTag: 345688d7-aa29-4e71-ac4e-f2f7f7093fff
+		summarizeBy: sum
+		sourceColumn: retention28
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column stake
+		dataType: double
+		lineageTag: f12fd1c2-9fe1-42b8-957f-677953ecccda
+		summarizeBy: sum
+		sourceColumn: stake
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Fact Player Group' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Client = Client,
+				    Version = Version,
+				    Base = Base,
+				 
+				    #"Custom URL" = Base & Client & "/demogamerecs/factGroupTable/",
+				    
+				    #"Read Table" = fn_ReadDeltaTable(
+				        AzureStorage.DataLake(
+				            #"Custom URL", 
+				            [HierarchicalNavigation = false]
+				        )
+				    ),
+				    Custom1 = #"Read Table"
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

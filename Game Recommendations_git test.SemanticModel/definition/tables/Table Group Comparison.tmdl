@@ -1,0 +1,38 @@
+table 'Table Group Comparison'
+	isHidden
+	lineageTag: 4c048a62-82e5-4e8b-96cb-3837c2ad4d6f
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: c190234f-9a2a-42d5-b3d5-109737197f09
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: string
+		lineageTag: 703eb183-8a72-4598-8e1b-e0d7729781cf
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Table Group Comparison' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcszJUdJRMlSK1YlWcs7PKynKB/GNwPyQxKL01BKFmFIDAyMzhaDUZAW//BKFgJzEytQUoCJjHIrgCkyUYmMB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

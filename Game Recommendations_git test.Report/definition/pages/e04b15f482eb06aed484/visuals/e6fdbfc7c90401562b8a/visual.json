@@ -1,0 +1,478 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "e6fdbfc7c90401562b8a",
+  "position": {
+    "x": 232.84304228302133,
+    "y": 50.670506610812929,
+    "z": 6000,
+    "height": 647.85862023825109,
+    "width": 710.59353318497176,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "ZoomChartsDrillDownGraphProA2C55E4B59078FDD51C4CD1C4D4E6623V8N8",
+    "query": {
+      "queryState": {
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact Network analysis"
+                        }
+                      },
+                      "Property": "frequency"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact Network analysis.frequency)",
+              "nativeQueryRef": "frequency1"
+            }
+          ]
+        },
+        "fromNodes": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Network analysis"
+                    }
+                  },
+                  "Property": "game_1"
+                }
+              },
+              "queryRef": "Fact Network analysis.game_1",
+              "nativeQueryRef": "game_1"
+            }
+          ]
+        },
+        "linkLabelField": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Network analysis"
+                    }
+                  },
+                  "Property": "Total Frequency"
+                }
+              },
+              "queryRef": "Fact Network analysis.Total Frequency",
+              "nativeQueryRef": "Total Frequency"
+            }
+          ]
+        },
+        "toNodes": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Network analysis"
+                    }
+                  },
+                  "Property": "game_2"
+                }
+              },
+              "queryRef": "Fact Network analysis.game_2",
+              "nativeQueryRef": "game_2"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Fact Network analysis"
+                      }
+                    },
+                    "Property": "frequency"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "trialLicense": [
+        {
+          "properties": {
+            "validLicenseProvided": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "properties": {
+            "valueDecimals": {
+              "expr": {
+                "Literal": {
+                  "Value": "'auto'"
+                }
+              }
+            },
+            "displayUnit": {
+              "expr": {
+                "Literal": {
+                  "Value": "'auto'"
+                }
+              }
+            },
+            "maxRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "minRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "colorMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fixed'"
+                }
+              }
+            },
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF7336'"
+                    }
+                  }
+                }
+              }
+            },
+            "labelLocation": {
+              "expr": {
+                "Literal": {
+                  "Value": "'outside'"
+                }
+              }
+            },
+            "valueFormat": {
+              "expr": {
+                "Literal": {
+                  "Value": "'value'"
+                }
+              }
+            },
+            "nodeDetailMinSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "nodeDetailMinZoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "properties": {
+            "valueDecimals": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "displayUnit": {
+              "expr": {
+                "Literal": {
+                  "Value": "'K'"
+                }
+              }
+            },
+            "fillColorOpacity": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
+            "maxWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "multilinkSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "multiLinkProcessor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "linkDetailMinZoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "linkDetailMinSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "insideLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outsideLabels": [
+        {
+          "properties": {
+            "fontSizeMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fixed'"
+                }
+              }
+            },
+            "backgroundOpacity": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "borderRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "popup": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "tooltipType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'powerbi_tooltip'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "properties": {
+            "nodeDisplayMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "exploreMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "unhideNodes": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "search": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "darkMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Network Analysis'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#444444'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ca6dba1244b02862900c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact Network analysis"
+              }
+            },
+            "Property": "GameFilterMeasure"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Fact Network analysis",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "GameFilterMeasure"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

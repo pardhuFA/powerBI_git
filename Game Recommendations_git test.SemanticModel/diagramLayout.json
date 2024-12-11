@@ -1,0 +1,256 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 1032.6200567236697
+          },
+          "nodeIndex": "Key Measures",
+          "nodeLineageTag": "b78cdbcb-6d3d-4336-8892-38de1bfce6df",
+          "size": {
+            "height": 359.6479157812563,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 418.8560172386521,
+            "y": 0
+          },
+          "nodeIndex": "DimCalendar",
+          "nodeLineageTag": "655a1d35-551b-4343-bccc-3d5347c822ef",
+          "size": {
+            "height": 269.91463518092922,
+            "width": 290.37332588955587
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2874.8985172508123,
+            "y": 0
+          },
+          "nodeIndex": "DimCalendar Period 1",
+          "nodeLineageTag": "e9cca672-cb07-43e5-90c1-773a27b2210f",
+          "size": {
+            "height": 199.52557363501774,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2453.0295878914412,
+            "y": 0
+          },
+          "nodeIndex": "DimCalendar Period 2",
+          "nodeLineageTag": "30e8763e-1cdb-4bf0-8c02-e966e61468c7",
+          "size": {
+            "height": 201.69043721301011,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 559.64027455149517,
+            "y": 1029.9334471448749
+          },
+          "nodeIndex": "Parameter Group Comparison",
+          "nodeLineageTag": "790dd220-5e96-4813-b950-2ae336ce91d3",
+          "size": {
+            "height": 175.04538028993625,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1195.2707198195212,
+            "y": 1028.4190738618686
+          },
+          "nodeIndex": "Parameter Group Comparison 2",
+          "nodeLineageTag": "338b2107-066d-4eda-a2d4-917c005de97c",
+          "size": {
+            "height": 170.14041486174881,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 869.84925295119046,
+            "y": 1025.4549437569831
+          },
+          "nodeIndex": "Table Group Comparison",
+          "nodeLineageTag": "4c048a62-82e5-4e8b-96cb-3837c2ad4d6f",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 878.90776019396253,
+            "y": 528.73652784160413
+          },
+          "nodeIndex": "Fact Player Group",
+          "nodeLineageTag": "db96c042-1d68-4528-b0b0-f382c9db860a",
+          "size": {
+            "height": 335.61558772081094,
+            "width": 288.47089886712251
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2048.9043368706857,
+            "y": 0
+          },
+          "nodeIndex": "Dim Currency",
+          "nodeLineageTag": "70f898f5-e7dd-4e40-8b1d-b16f52507622",
+          "size": {
+            "height": 199.6870366479244,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 541.19421470128555
+          },
+          "nodeIndex": "Fact Recommended Games",
+          "nodeLineageTag": "126ff632-757a-4c2c-ab0a-f70731d83e95",
+          "size": {
+            "height": 353.74985573265593,
+            "width": 377.18941942082688
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 270.67982520516017,
+            "y": 1232.2090806761553
+          },
+          "nodeIndex": "Rank Table",
+          "nodeLineageTag": "99137387-14f8-43c7-9088-824cd5537ea5",
+          "size": {
+            "height": 161.5582918089151,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 268.96802364342727,
+            "y": 1030.2924748192358
+          },
+          "nodeIndex": "Parameter Recommendation Impact",
+          "nodeLineageTag": "30ec6fda-22f2-433b-848b-1f8886a1a720",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1320.5200659306222,
+            "y": 527.11942604193086
+          },
+          "nodeIndex": "Fact Network analysis",
+          "nodeLineageTag": "a8769c52-1326-42ca-9ca8-3b4df6b0598d",
+          "size": {
+            "height": 342.5599804355802,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 1648.1652210823918,
+            "y": 0
+          },
+          "nodeIndex": "UniqueGames",
+          "nodeLineageTag": "468511a1-a0e1-4c5f-9a76-ee99a640fb43",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 498.2271085351997,
+            "y": 536.37377993500047
+          },
+          "nodeIndex": "Fact Games Stats",
+          "nodeLineageTag": "bca2678f-e80e-40bf-ae43-b269b67ba8c2",
+          "size": {
+            "height": 342.95188046862029,
+            "width": 244.71381371444204
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 44.998017600656794,
+            "y": 0
+          },
+          "nodeIndex": "Dim Game Meta",
+          "nodeLineageTag": "1a38911c-1c46-4e15-8e00-d812da2d52db",
+          "size": {
+            "height": 266.10744809752583,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1274.9841106207452,
+            "y": 0
+          },
+          "nodeIndex": "Dim Jurisdiction",
+          "nodeLineageTag": "9a0e92fb-a717-4779-95b2-80c83778ea6b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 852.33533552898632,
+            "y": 0
+          },
+          "nodeIndex": "Dim Site",
+          "nodeLineageTag": "62668971-2d7f-4087-a0c9-3f83efa421af",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 29.535275397743582,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

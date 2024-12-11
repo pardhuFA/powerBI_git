@@ -1,0 +1,48 @@
+table 'Dim Currency'
+	lineageTag: 70f898f5-e7dd-4e40-8b1d-b16f52507622
+
+	column Country
+		dataType: string
+		lineageTag: 0827ad87-ac96-4662-8268-a394f321d614
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: dda5e309-4dcc-4f4e-b8d6-8e1fe3c44e2d
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format
+		dataType: string
+		lineageTag: 40ae1aa6-6be9-403a-b8b4-d064dd4bb1d5
+		summarizeBy: none
+		sourceColumn: Format
+
+		annotation SummarizationSetBy = Automatic
+
+	column Client
+		dataType: string
+		lineageTag: 05abe4b6-9315-4e60-a541-f3d73f977f35
+		summarizeBy: none
+		sourceColumn: Client
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Currency' = m
+		mode: import
+		queryGroup: Dim
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCs3LLElNUfDOzEtPyc9V0lEKyC/NSwHShxYr6xhYK+hCaTAFFC4uTlaK1SFdX1JpVVUSUHE+su7gksSS1GKgrEt+Tk5iEZARE6MC0qYLpSEUUDwnvyS/sDQ1KRViu2tpUX5BKlAcxABSj5rWQGyFMSA0UCY5sbg0N59ETUmpJcXF+Xkk6korzclJyy9KTlWKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Country = _t, Currency = _t, Format = _t, Client = _t])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

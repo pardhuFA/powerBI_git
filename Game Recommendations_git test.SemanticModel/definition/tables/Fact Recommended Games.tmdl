@@ -1,0 +1,479 @@
+table 'Fact Recommended Games'
+	lineageTag: 126ff632-757a-4c2c-ab0a-f70731d83e95
+
+	column site
+		dataType: string
+		lineageTag: 718e26e0-a26a-4530-80f7-1eeb4c71e4bd
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	column jurisdiction
+		dataType: string
+		lineageTag: 324f14d7-23d5-44c0-9c4e-d37f4127dc58
+		summarizeBy: none
+		sourceColumn: jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column recc_game
+		dataType: string
+		lineageTag: a74f8625-918c-460b-9414-b2cfbcb9a818
+		summarizeBy: none
+		sourceColumn: recc_game
+
+		annotation SummarizationSetBy = Automatic
+
+	column recc_times
+		dataType: int64
+		formatString: 0
+		lineageTag: 8330098f-0239-44e7-909a-a624d6fd27fe
+		summarizeBy: sum
+		sourceColumn: recc_times
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e97019f-080b-4b34-936e-38994cfa6507
+		summarizeBy: sum
+		sourceColumn: 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2
+		dataType: int64
+		formatString: 0
+		lineageTag: ea8cf7a8-2b5d-4dd0-80dc-3d5ee420178f
+		summarizeBy: sum
+		sourceColumn: 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 3
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f16fad2-9573-4ff8-ba6b-bf874021b084
+		summarizeBy: sum
+		sourceColumn: 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 4
+		dataType: int64
+		formatString: 0
+		lineageTag: 15280318-cd62-40c3-98cd-01bde8cc1269
+		summarizeBy: sum
+		sourceColumn: 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 5
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d5bdb08-c1ca-4991-aed5-3ea323c85388
+		summarizeBy: sum
+		sourceColumn: 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 6
+		dataType: int64
+		formatString: 0
+		lineageTag: 979d7667-c7a1-4cfa-b4e0-ff78c199bcd4
+		summarizeBy: sum
+		sourceColumn: 6
+
+		annotation SummarizationSetBy = Automatic
+
+	column 7
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fb7eb4d-88c5-423a-9eb3-151a9a877ec5
+		summarizeBy: sum
+		sourceColumn: 7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 8
+		dataType: int64
+		formatString: 0
+		lineageTag: f73098b2-fa0a-439e-9365-ef321de1c0f1
+		summarizeBy: sum
+		sourceColumn: 8
+
+		annotation SummarizationSetBy = Automatic
+
+	column 9
+		dataType: int64
+		formatString: 0
+		lineageTag: bbe838a4-4bbe-4f81-a24c-de55ed48ad27
+		summarizeBy: sum
+		sourceColumn: 9
+
+		annotation SummarizationSetBy = Automatic
+
+	column 10
+		dataType: int64
+		formatString: 0
+		lineageTag: 11958b99-e691-4958-98d1-4c6b17d74077
+		summarizeBy: sum
+		sourceColumn: 10
+
+		annotation SummarizationSetBy = Automatic
+
+	column 11
+		dataType: int64
+		formatString: 0
+		lineageTag: bfe8062b-26e5-424d-8827-3694293b95d4
+		summarizeBy: sum
+		sourceColumn: 11
+
+		annotation SummarizationSetBy = Automatic
+
+	column 12
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bb2b6b5-221e-4353-8843-4124e691eb3c
+		summarizeBy: sum
+		sourceColumn: 12
+
+		annotation SummarizationSetBy = Automatic
+
+	column 13
+		dataType: int64
+		formatString: 0
+		lineageTag: ed272bdb-d915-43cf-b847-11225dad65a1
+		summarizeBy: sum
+		sourceColumn: 13
+
+		annotation SummarizationSetBy = Automatic
+
+	column 14
+		dataType: int64
+		formatString: 0
+		lineageTag: 108d7e56-d53d-4594-bd81-aaaaaf1f11f1
+		summarizeBy: sum
+		sourceColumn: 14
+
+		annotation SummarizationSetBy = Automatic
+
+	column 15
+		dataType: int64
+		formatString: 0
+		lineageTag: b8e4ed1e-930f-4dbc-b41e-56f21739746b
+		summarizeBy: sum
+		sourceColumn: 15
+
+		annotation SummarizationSetBy = Automatic
+
+	column 16
+		dataType: int64
+		formatString: 0
+		lineageTag: 10f3bce9-97c8-4086-a54d-1ef939c091a3
+		summarizeBy: sum
+		sourceColumn: 16
+
+		annotation SummarizationSetBy = Automatic
+
+	column 17
+		dataType: int64
+		formatString: 0
+		lineageTag: 7042a0da-b5cd-4d3b-8a0e-e301801d74ed
+		summarizeBy: sum
+		sourceColumn: 17
+
+		annotation SummarizationSetBy = Automatic
+
+	column 18
+		dataType: int64
+		formatString: 0
+		lineageTag: a381c952-8671-4982-84a0-5daa81630be1
+		summarizeBy: sum
+		sourceColumn: 18
+
+		annotation SummarizationSetBy = Automatic
+
+	column 19
+		dataType: int64
+		formatString: 0
+		lineageTag: 61802c10-add3-4521-84ae-8442e8a2475b
+		summarizeBy: sum
+		sourceColumn: 19
+
+		annotation SummarizationSetBy = Automatic
+
+	column 20
+		dataType: int64
+		formatString: 0
+		lineageTag: 675cb6bb-eb04-4bbb-9fba-f31435549c68
+		summarizeBy: sum
+		sourceColumn: 20
+
+		annotation SummarizationSetBy = Automatic
+
+	column 21
+		dataType: int64
+		formatString: 0
+		lineageTag: efac3797-1a09-4b46-829f-b5d9b0e897d2
+		summarizeBy: sum
+		sourceColumn: 21
+
+		annotation SummarizationSetBy = Automatic
+
+	column 22
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a9c1db2-d4e8-4b21-92a5-9c5795552f83
+		summarizeBy: sum
+		sourceColumn: 22
+
+		annotation SummarizationSetBy = Automatic
+
+	column 23
+		dataType: int64
+		formatString: 0
+		lineageTag: 0cb898e1-022f-4873-af0d-f6b0b5291729
+		summarizeBy: sum
+		sourceColumn: 23
+
+		annotation SummarizationSetBy = Automatic
+
+	column 24
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b9fb8d8-7685-4965-87cb-6332132beeca
+		summarizeBy: sum
+		sourceColumn: 24
+
+		annotation SummarizationSetBy = Automatic
+
+	column 25
+		dataType: int64
+		formatString: 0
+		lineageTag: 1068ab46-abf3-4c9a-9a94-0678eefefc4e
+		summarizeBy: sum
+		sourceColumn: 25
+
+		annotation SummarizationSetBy = Automatic
+
+	column 26
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e1c0ce7-993d-45d4-91f9-a5f7805a34e6
+		summarizeBy: sum
+		sourceColumn: 26
+
+		annotation SummarizationSetBy = Automatic
+
+	column 27
+		dataType: int64
+		formatString: 0
+		lineageTag: eac35339-e2e4-4231-9580-db118a1e2985
+		summarizeBy: sum
+		sourceColumn: 27
+
+		annotation SummarizationSetBy = Automatic
+
+	column 28
+		dataType: int64
+		formatString: 0
+		lineageTag: 75c3c4a9-2ada-4daa-93c7-7f3ba50a76f2
+		summarizeBy: sum
+		sourceColumn: 28
+
+		annotation SummarizationSetBy = Automatic
+
+	column 29
+		dataType: int64
+		formatString: 0
+		lineageTag: 42019df5-2da4-4530-bacd-0f863387ad4e
+		summarizeBy: sum
+		sourceColumn: 29
+
+		annotation SummarizationSetBy = Automatic
+
+	column 30
+		dataType: int64
+		formatString: 0
+		lineageTag: 59711227-257c-4c6b-b2b1-ccbcd0ccfdb0
+		summarizeBy: sum
+		sourceColumn: 30
+
+		annotation SummarizationSetBy = Automatic
+
+	column 31
+		dataType: int64
+		formatString: 0
+		lineageTag: 617f6b8c-b2fa-40dc-8673-d6dfa784dd7e
+		summarizeBy: sum
+		sourceColumn: 31
+
+		annotation SummarizationSetBy = Automatic
+
+	column 32
+		dataType: int64
+		formatString: 0
+		lineageTag: e35e8ac1-e535-4def-9c1a-895fa2188eaa
+		summarizeBy: sum
+		sourceColumn: 32
+
+		annotation SummarizationSetBy = Automatic
+
+	column 33
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f54ddbb-8c80-4862-a208-d0be3d49646c
+		summarizeBy: sum
+		sourceColumn: 33
+
+		annotation SummarizationSetBy = Automatic
+
+	column 34
+		dataType: int64
+		formatString: 0
+		lineageTag: 740c59ab-e913-459e-8d38-f88cbeee9bfd
+		summarizeBy: sum
+		sourceColumn: 34
+
+		annotation SummarizationSetBy = Automatic
+
+	column 35
+		dataType: int64
+		formatString: 0
+		lineageTag: ac8ed024-8afe-4113-a621-abe454b577e4
+		summarizeBy: sum
+		sourceColumn: 35
+
+		annotation SummarizationSetBy = Automatic
+
+	column 36
+		dataType: int64
+		formatString: 0
+		lineageTag: ec6a18c7-8b68-4b9c-97dd-0ed70e85125b
+		summarizeBy: sum
+		sourceColumn: 36
+
+		annotation SummarizationSetBy = Automatic
+
+	column 37
+		dataType: int64
+		formatString: 0
+		lineageTag: bc1b0e3a-4c4b-4778-890e-654444e35f99
+		summarizeBy: sum
+		sourceColumn: 37
+
+		annotation SummarizationSetBy = Automatic
+
+	column 38
+		dataType: int64
+		formatString: 0
+		lineageTag: a706599d-0ee0-4dbc-8847-03e51994f458
+		summarizeBy: sum
+		sourceColumn: 38
+
+		annotation SummarizationSetBy = Automatic
+
+	column 39
+		dataType: int64
+		formatString: 0
+		lineageTag: 348d2bf9-bdc5-470b-b874-21b83a9bedb4
+		summarizeBy: sum
+		sourceColumn: 39
+
+		annotation SummarizationSetBy = Automatic
+
+	column 40
+		dataType: int64
+		formatString: 0
+		lineageTag: a5b45cb9-1793-420b-ad26-e96ff4632c09
+		summarizeBy: sum
+		sourceColumn: 40
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_of_active_users_recommend_game
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ef547ad-0cfa-4340-8864-ff6e69a49b6a
+		summarizeBy: sum
+		sourceColumn: number_of_active_users_recommend_game
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_of_active_users_recommend_game_played
+		dataType: int64
+		formatString: 0
+		lineageTag: a0cbe0f7-6ecd-4647-a424-8f7e91a651dd
+		summarizeBy: sum
+		sourceColumn: number_of_active_users_recommend_game_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column stakes_recplayed
+		dataType: double
+		lineageTag: 4443ab3d-ed81-4404-be92-4cbcbd087ee8
+		summarizeBy: sum
+		sourceColumn: stakes_recplayed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EventDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f046e2cd-2157-4c9e-ab6f-93bef6974c4b
+		summarizeBy: none
+		sourceColumn: EventDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column distinct_users_within_7_days
+		dataType: int64
+		formatString: 0
+		lineageTag: d79fe148-7bda-4094-9aea-805796992bc0
+		summarizeBy: sum
+		sourceColumn: distinct_users_within_7_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column distinct_users_within_14_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 03da1cdd-73a0-4148-8c05-51034d591dfa
+		summarizeBy: sum
+		sourceColumn: distinct_users_within_14_days
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Recommended Games' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Client = Client,
+				    Version = Version,
+				    Base = Base,
+				 
+				    #"Custom URL" = Base & Client & "/demogamerecs/factRecommendation_RecGameStats",
+				    
+				    #"Read Table" = fn_ReadDeltaTable(
+				        AzureStorage.DataLake(
+				            #"Custom URL", 
+				            [HierarchicalNavigation = false]
+				        )
+				    ),
+				    Custom1 = #"Read Table"
+				in
+				    Custom1
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
