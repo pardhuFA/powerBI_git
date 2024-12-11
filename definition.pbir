@@ -1,9 +1,0 @@
-{
-  "version": "4.0",
-  "datasetReference": {
-    "byPath": {
-      "path": "../Game Recommendations_git test.SemanticModel"
-    },
-    "byConnection": null
-  }
-}
